@@ -3,9 +3,6 @@ executors:
   dbExecutor:
     docker:
       - image: postgres:9.4.1
-        auth:
-          username: hassan
-          password: hassan
         environment:
           POSTGRES_USER: postgres
     environment:
