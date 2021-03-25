@@ -18,7 +18,7 @@ jobs:
           username: hassan
           password: hassan
         environment:
-          POSTGRES_USER: hassan
+          POSTGRES_USER: postgres
     steps:
       - checkout
       - run: |
