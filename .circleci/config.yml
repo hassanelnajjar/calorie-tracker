@@ -1,0 +1,30 @@
+version: 2.1
+orbs:
+  node: circleci/node@1.1
+jobs:
+  test:
+    docker:
+        - image: circleci/node:10
+        - image: circleci/postgres:9.6-alpine
+        auth:
+          username: circleci
+          password: circleci  # context / project UI env-var reference
+        environment:
+          POSTGRES_USER: postgres
+    environment:
+      NODE_ENV: test
+      POSTGRES_USER: circleci
+      POSTGRES_DB: circleci
+      JWT_SECRET: sekrit
+  build:
+    executor:
+      name: node/default
+      tag: '10.4'
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+      - run: npm run test
+
+
