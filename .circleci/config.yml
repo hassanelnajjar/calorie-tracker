@@ -6,6 +6,13 @@ executors:
         auth:
           username: hassan
           password: hassan
+        environment:
+          POSTGRES_USER: postgres
+    environment:
+      NODE_ENV: test
+      POSTGRES_USER: circleci
+      POSTGRES_DB: circleci
+      JWT_SECRET: sekrit
 
 jobs:
   build:
@@ -13,12 +20,6 @@ jobs:
     step: echo hello
     docker:
       - image: circleci/node:14
-      - image: postgres:9.4.1
-        auth:
-          username: hassan
-          password: hassan
-        environment:
-          POSTGRES_USER: postgres
     steps:
       - checkout
       - run: |
