@@ -15,10 +15,10 @@ jobs:
     steps:
       - checkout
       - run: |
-        psql \
-        -c "CREATE DATABASE circleci;"
-        -c "CREATE user circleci with superuser password 'circleci'"
-        -c "alter database circleci owner to circleci"
+          psql \
+          -c "CREATE DATABASE circleci;"
+          -c "CREATE user circleci with superuser password 'circleci'"
+          -c "alter database circleci owner to circleci"
       - run: npm install
       - run: npm run build:db
       - run: npm test
