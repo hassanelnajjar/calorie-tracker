@@ -14,7 +14,7 @@ jobs:
       TEST_DATABASE_URL: postgresql://circleci:circleci@localhost:5432/circleci
     steps:
       - checkout
-      - run: sudo -u pg_ctl -D /usr/local/var/postgres start
+      - run: su -u pg_ctl -D /usr/local/var/postgres start
       - run: createuser circleci --s && createdb circleci  --owner=circleci
       - run: npm install
       - run: npm run build:db
