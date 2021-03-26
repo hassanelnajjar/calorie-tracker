@@ -14,7 +14,11 @@ jobs:
       JWT_SECRET: sekrit
     steps:
       - checkout
-      - run: createuser circleci --s && createdb circleci  --owner=circleci
+      - run: |
+        psql \
+        -c "CREATE DATABASE circleci;"
+        -c "CREATE user circleci with superuser password 'circleci'"
+        -c "alter database circleci owner to circleci"
       - run: npm install
       - run: npm run build:db
       - run: npm test
