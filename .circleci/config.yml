@@ -20,7 +20,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-pkg-cache
-      - run: sudo su postgres
+      - run: sudo su -
       - run:
           name: Waiting for Postgres to be ready
           command: |
