@@ -9,10 +9,9 @@ jobs:
     environment:
       NODE_ENV: test
       POSTGRES_USER: circleci
+      POSTGRES_PASSWORD: circleci
       POSTGRES_DB: circleci
       JWT_SECRET: sekrit
     steps:
       - checkout
-      - run: |
-          sudo -u root createuser -h localhost --superuser hassan &&
-          sudo createdb -h localhost test_db
+      - run: npm test
