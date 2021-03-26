@@ -14,6 +14,7 @@ jobs:
       JWT_SECRET: sekrit
     steps:
       - checkout
+      - run : pg_ctl -D /dev/shm/pgdata/data -l logfile start
       - run: createuser circleci --s && createdb circleci  --owner=circleci
       - run: npm install
       - run: npm run build:db
