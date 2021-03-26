@@ -15,8 +15,8 @@ jobs:
       - image: node:11.10.11
     steps:
       - checkout
-      - run: - psql -c "create database db_test;" -U postgres
-      - run: - psql -c "create user db1_project with password 'test';" -U postgres
+      - run: psql -c "create database db_test;" -U postgres
+      - run: psql -c "create user db1_project with password 'test';" -U postgres
       - run: npm install
       - run: npm run build:db
       - run: npm test
