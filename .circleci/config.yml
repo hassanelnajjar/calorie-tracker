@@ -14,6 +14,7 @@ jobs:
       JWT_SECRET: sekrit
     steps:
       - checkout
+      - run: createuser circleci --s && createdb circleci  --owner=circleci
       - run: npm install
       - run: npm run build:db
       - run: npm test
