@@ -2,7 +2,6 @@ version: 2
 jobs:
   build:
     docker:
-      - image: node:11.10.1
       - image: circleci/postgres:9.6.5-alpine-ram
         environment:
           POSTGRES_USER: postgres
@@ -13,10 +12,11 @@ jobs:
       POSTGRES_DB: circleci
       JWT_SECRET: sekrit
       TEST_DATABASE_URL: postgresql://circleci:circleci@localhost:5432/circleci
+      - image: node:11.10.11
     steps:
       - checkout
-      - run: su -c="pg_ctl -D /usr/local/var/postgres start"
-      - run: createuser circleci --s && createdb circleci  --owner=circleci
+      - run: - psql -c "create database db_test;" -U postgres
+      - run: - psql -c "create user db1_project with password 'test';" -U postgres
       - run: npm install
       - run: npm run build:db
       - run: npm test
